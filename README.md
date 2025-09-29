@@ -14,7 +14,7 @@ To execute the solution, run npm start for Node.js or dotnet run for C# from the
 
 Both **NodeJS** and **C#** implementations are provided for sake of versatility.
 
-- Folder Structure
+- **Folder Structure**
 
 ```
 spider-navigation/
@@ -48,5 +48,27 @@ spider-navigation/
 └── README.md
 ```
 
+- **Deployment Architecture**
 
-
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    PRODUCTION ENVIRONMENT                   │
+├─────────────────┐    ┌─────────────────┐    ┌───────────────┤
+│   LOAD          │    │   APPLICATION   │    │   MONITORING  │
+│   BALANCER      │    │   SERVERS       │    │   & LOGGING   │
+│                 │    │                 │    │               │
+│ • Traffic       │    │ • Node.js       │    │ • Metrics     │
+│   Distribution  │───▶│   Instances     │───▶│ • Alerts      │
+│ • SSL           │    │ • C# Services   │    │ • Dashboards  │
+│   Termination   │    │ • API Endpoints │    │               │
+└─────────────────┘    └─────────────────┘    └───────────────┘
+                                │
+                                ▼
+                       ┌─────────────────┐
+                       │   DATA STORE    │
+                       │                 │
+                       │ • Redis Cache   │
+                       │ • File Storage  │
+                       │ • Session Data  │
+                       └─────────────────┘
+```
