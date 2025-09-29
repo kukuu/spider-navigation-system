@@ -128,4 +128,54 @@ npm test
 npm run test:watch
 
 ```
-  
+Expected Output
+```
+
+🕷️  SPIDER NAVIGATION SYSTEM
+
+Input:
+Wall: 7 15
+Spider: 4 10 Left
+Instructions: FLFLFRFFLF
+
+📊 FINAL RESULT:
+Expected: 5 7 Right
+Actual: 5 7 Right
+
+🕸️  NAVIGATION PATH VISUALIZATION:
+
+· · · · · · · · 
+· · · · · · · · 
+· · · · · · · · 
+· · · · · ★ · · 
+· · · · → → → · 
+· · · ← · · · · 
+· · · ↑ · · · · 
+· · · ↑ · · · · 
+· · · ↑ · · · · 
+· · · ↑ · · · · 
+· · · ← ← ← · · 
+· · · · · · · · 
+· · · · · · · · 
+· · · · · · · · 
+· · · · · · · · 
+· · · · · · · · 
+
+📈 PATH STEPS:
+Step 0: (4, 10) facing Left
+Step 1: (3, 10) facing Left
+Step 2: (3, 10) facing Down
+Step 3: (3, 9) facing Down
+Step 4: (3, 9) facing Right
+Step 5: (4, 9) facing Right
+Step 6: (4, 9) facing Up
+Step 7: (4, 10) facing Up
+Step 8: (4, 10) facing Right
+Step 9: (5, 10) facing Right
+Step 10: (5, 10) facing Down
+Step 11: (5, 9) facing Down
+Step 12: (5, 8) facing Down
+Step 13: (5, 7) facing Down
+Step 14: (5, 7) facing Right
+
+```
