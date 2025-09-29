@@ -10,7 +10,19 @@ Primary technical challenges include coordinate system boundary management, wher
 
 - **Execution & Validation**
   
-To execute the solution, run npm start for Node.js or dotnet run for C# from their respective directories. The system includes built-in visualization showing the spider's complete path using ASCII art, with directional arrows mapping each movement step. Comprehensive test suites validate all edge cases including boundary conditions, invalid inputs, and complex navigation sequences. The modular architecture allows easy extension for multiple spiders or additional movement commands while maintaining system reliability through separation of concerns between parsing, navigation, and visualization components.
+To execute the solution, run:
+
+```
+npm start
+```
+ for Node.js or 
+ 
+ ```
+dotnet run
+```
+for C# from their respective directories. The system includes built-in visualization showing the spider's complete path using ASCII art, with directional arrows mapping each movement step. 
+
+Comprehensive test suites validate all edge cases including boundary conditions, invalid inputs, and complex navigation sequences. The modular architecture allows easy extension for multiple spiders or additional movement commands while maintaining system reliability through separation of concerns between parsing, navigation, and visualization components.
 
 Both **NodeJS** and **C#** implementations are provided for sake of versatility.
 
