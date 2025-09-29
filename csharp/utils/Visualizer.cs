@@ -22,7 +22,7 @@ namespace SpiderNavigation.Utils
                 grid[step.Y, step.X] = symbol;
             }
             
-            // Display grid (inverted Y-axis)
+            // Display grid (inverted Y-axis for proper visualization)
             for (int y = gridHeight; y >= 0; y--)
             {
                 for (int x = 0; x <= gridWidth; x++)
