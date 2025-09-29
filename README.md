@@ -105,14 +105,9 @@ This architecture ensures separation of concerns, testability, maintainability, 
 
 Both solutions produce the exact same output and follow the same architectural principles. The visualization shows each step of the spider's journey with directional arrows and marks the final position with a star (★)
 
-- **Repositories**
+- **Repository**
 
-_Nodejs_
-
-Repository:
-- 
-
-Execution Commands
+_Nodejs Execution Commands_
 
 ```
 cd nodejs
