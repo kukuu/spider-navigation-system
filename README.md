@@ -1,4 +1,4 @@
-# Spider Navigation System
+# Spider Navigation System - SNS
 
 - **Technical Implementation Overview**
   
