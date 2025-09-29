@@ -1,0 +1,19 @@
+{
+  "name": "spider-navigation",
+  "version": "1.0.0",
+  "description": "Spider wall navigation system",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "type": "module"
+}
+
+
+
+
