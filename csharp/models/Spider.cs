@@ -27,7 +27,7 @@ namespace SpiderNavigation.Models
                 "Left" => "Down",
                 "Down" => "Right",
                 "Right" => "Up",
-                _ => Orientation
+                _ => throw new ArgumentException($"Invalid orientation: {Orientation}")
             };
             Path.Add(new Position(X, Y, Orientation));
         }
@@ -40,7 +40,7 @@ namespace SpiderNavigation.Models
                 "Right" => "Down",
                 "Down" => "Left",
                 "Left" => "Up",
-                _ => Orientation
+                _ => throw new ArgumentException($"Invalid orientation: {Orientation}")
             };
             Path.Add(new Position(X, Y, Orientation));
         }
@@ -67,6 +67,9 @@ namespace SpiderNavigation.Models
 
         public void ExecuteInstructions(string instructions)
         {
+            if (string.IsNullOrEmpty(instructions))
+                throw new ArgumentException("Instructions cannot be null or empty");
+
             foreach (char instruction in instructions)
             {
                 switch (instruction)
@@ -81,8 +84,7 @@ namespace SpiderNavigation.Models
                         MoveForward();
                         break;
                     default:
-                        Console.WriteLine($"Warning: Unknown instruction '{instruction}'");
-                        break;
+                        throw new ArgumentException($"Unknown instruction: {instruction}");
                 }
             }
         }
