@@ -2,7 +2,7 @@
 
 - **Technical Implementation Overview**
   
-The spider navigation system implements a grid-based coordinate system with stateful spider entities that process sequential movement instructions. The core algorithm uses finite state machines for orientation management, where each spider maintains its position (x, y) and direction (Up, Right, Down, Left) as discrete states. Movement operations involve coordinate transformations based on current orientation while boundary checking prevents spiders from moving beyond the defined wall dimensions. The instruction parser processes character sequences into executable commands, with the navigation service orchestrating the complete workflow from input parsing to final position calculation.
+The SNS implements a grid-based coordinate system with stateful spider entities that process sequential movement instructions. The core algorithm uses finite state machines for orientation management, where each spider maintains its position (x, y) and direction (Up, Right, Down, Left) as discrete states. Movement operations involve coordinate transformations based on current orientation while boundary checking prevents spiders from moving beyond the defined wall dimensions. The instruction parser processes character sequences into executable commands, with the navigation service orchestrating the complete workflow from input parsing to final position calculation.
 
 - **Key Challenges & Risk Factors**
 
