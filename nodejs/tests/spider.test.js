@@ -1,6 +1,6 @@
-import { Spider } from '../src/models/Spider.js';
-import { InputParser } from '../src/utils/InputParser.js';
-import { NavigationService } from '../src/services/NavigationService.js';
+const { Spider } = require('../src/models/Spider.js');
+const { InputParser } = require('../src/utils/InputParser.js');
+const { NavigationService } = require('../src/services/NavigationService.js');
 
 describe('Spider Navigation', () => {
     test('should parse input correctly', () => {
