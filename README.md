@@ -184,7 +184,25 @@ Step 14: (5, 7) facing Right
 ```
 
 _c# Execution Commands_:
-(following soon)
+
+🚀 RUNNING C# SOLUTION
+
+In VS Code Terminal:
+
+```
+cd csharp/SpiderNavigation
+
+# Build and run
+
+dotnet run
+
+# Run tests
+
+cd ../Tests
+
+dotnet test
+```
+
 
 ## Execution Sequence & Comparative Analysis
 Both implementations follow identical execution sequences: 
