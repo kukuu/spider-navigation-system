@@ -1,4 +1,4 @@
-export class Visualizer {
+class Visualizer {
     static displayPath(path, gridWidth, gridHeight) {
         console.log('\n🕸️  NAVIGATION PATH VISUALIZATION:\n');
         
@@ -38,3 +38,5 @@ export class Visualizer {
         return symbols[orientation] || '·';
     }
 }
+
+module.exports = { Visualizer };

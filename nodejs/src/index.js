@@ -1,12 +1,12 @@
-import { InputParser } from './utils/InputParser.js';
-import { NavigationService } from './services/NavigationService.js';
-import { Visualizer } from './utils/Visualizer.js';
+const { InputParser } = require('./utils/InputParser.js');
+const { NavigationService } = require('./services/NavigationService.js');
+const { Visualizer } = require('./utils/Visualizer.js');
 
 class SpiderNavigationApp {
-    static async run() {
+    static run() {
         console.log('🕷️  SPIDER NAVIGATION SYSTEM\n');
         
-        // Simulated input - in real scenario, this would come from stdin
+        // Test input from the requirement
         const wallInput = "7 15";
         const spiderInput = "4 10 Left";
         const instructionsInput = "FLFLFRFFLF";

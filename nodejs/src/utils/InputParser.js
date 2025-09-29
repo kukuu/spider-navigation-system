@@ -1,4 +1,4 @@
-export class InputParser {
+class InputParser {
     static parseWallSize(input) {
         const [width, height] = input.trim().split(' ').map(Number);
         return { width, height };
@@ -16,3 +16,5 @@ export class InputParser {
         return input.trim().split('');
     }
 }
+
+module.exports = { InputParser };

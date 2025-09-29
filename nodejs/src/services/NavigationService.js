@@ -1,6 +1,6 @@
-import { Spider } from '../models/Spider.js';
+const { Spider } = require('../models/Spider.js');
 
-export class NavigationService {
+class NavigationService {
     static navigate(wallSize, spiderPosition, instructions) {
         const spider = new Spider(
             spiderPosition.x,
@@ -14,3 +14,5 @@ export class NavigationService {
         return spider;
     }
 }
+
+module.exports = { NavigationService };

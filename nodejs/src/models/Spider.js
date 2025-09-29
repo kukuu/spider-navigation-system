@@ -1,4 +1,4 @@
-export class Spider {
+class Spider {
     constructor(x, y, orientation, gridWidth, gridHeight) {
         this.x = x;
         this.y = y;
@@ -60,3 +60,5 @@ export class Spider {
         return `${this.x} ${this.y} ${this.orientation}`;
     }
 }
+
+module.exports = { Spider };
