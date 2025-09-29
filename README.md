@@ -110,7 +110,7 @@ Both solutions produce the exact same output and follow the same architectural p
 
 - **Execution Commands**
 
-_Nodejs Execution Commands_
+_Nodejs Execution Commands_:
 
 ```
 cd nodejs
@@ -128,7 +128,7 @@ npm test
 npm run test:watch
 
 ```
-Expected Output
+_Expected Output:_
 ```
 
 🕷️  SPIDER NAVIGATION SYSTEM
