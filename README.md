@@ -62,6 +62,8 @@ spider-navigation/
 
 - **Deployment Architecture**
 
+This architecture ensures separation of concerns, testability, maintainability, and scalability while following enterprise-grade software design principles.
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                    PRODUCTION ENVIRONMENT                   │
