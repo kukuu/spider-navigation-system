@@ -1,5 +1,12 @@
 # Spider Navigation System - SNS
 
+- **Repository**
+
+Node.js: https://github.com/kukuu/spider-navigation-system/tree/main/nodejs
+
+C#: https://github.com/kukuu/spider-navigation-system/tree/main/csharp
+
+
 - **Technical Implementation Overview**
   
 The SNS implements a grid-based coordinate system with stateful spider entities that process sequential movement instructions. The core algorithm uses finite state machines for orientation management, where each spider maintains its position (x, y) and direction (Up, Right, Down, Left) as discrete states. Movement operations involve coordinate transformations based on current orientation while boundary checking prevents spiders from moving beyond the defined wall dimensions. The instruction parser processes character sequences into executable commands, with the navigation service orchestrating the complete workflow from input parsing to final position calculation.
@@ -105,11 +112,6 @@ This architecture ensures separation of concerns, testability, maintainability, 
 
 Both solutions produce the exact same output and follow the same architectural principles. The visualization shows each step of the spider's journey with directional arrows and marks the final position with a star (★)
 
-- **Repository**
-
-node.js: https://github.com/kukuu/spider-navigation-system/tree/main/nodejs
-
-c#: https://github.com/kukuu/spider-navigation-system/tree/main/csharp
 
 - **Execution Commands**
 
