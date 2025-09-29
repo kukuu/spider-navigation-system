@@ -211,6 +211,8 @@ Both implementations follow identical execution sequences:
 input parsing → entity instantiation → instruction processing → result output
 
 ```
-Node.js excels in rapid prototyping with dynamic typing and npm ecosystem integration, executed via npm start after dependency installation with npm install. C# provides superior performance and type safety, run using dotnet run after solution restoration with dotnet restore. 
+Node.js excels in rapid prototyping with dynamic typing and npm ecosystem integration, executed via npm start after dependency installation with npm install.
+
+C# provides superior performance and type safety, run using dotnet run after solution restoration with dotnet restore. 
 
 The Node.js version offers faster development cycles while C# delivers better runtime efficiency and compile-time error detection, with both producing identical navigation results and visualization outputs despite their differing runtime characteristics and ecosystem dependencies.
