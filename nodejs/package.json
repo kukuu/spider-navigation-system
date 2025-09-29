@@ -9,11 +9,6 @@
     "test:watch": "jest --watch"
   },
   "devDependencies": {
-    "jest": "^29.0.0"
-  },
-  "type": "module"
+    "jest": "^29.7.0"
+  }
 }
-
-
-
-
