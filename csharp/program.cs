@@ -1,5 +1,3 @@
-
-//Main Entry Point
 using SpiderNavigation.Models;
 using SpiderNavigation.Services;
 using SpiderNavigation.Utils;
@@ -10,7 +8,7 @@ class Program
     {
         Console.WriteLine("🕷️  SPIDER NAVIGATION SYSTEM\n");
         
-        // Input data
+        // Test input from the requirement
         string wallInput = "7 15";
         string spiderInput = "4 10 Left"; 
         string instructionsInput = "FLFLFRFFLF";
@@ -39,5 +37,8 @@ class Program
         {
             Console.WriteLine($"❌ Error: {ex.Message}");
         }
+        
+        Console.WriteLine("\nPress any key to exit...");
+        Console.ReadKey();
     }
 }
