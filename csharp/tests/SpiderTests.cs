@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SpiderNavigation.Models;
-using SpiderNavigation.Utils;
+using SpiderNavigation.Services;
 
 namespace SpiderNavigation.Tests
 {
@@ -11,77 +11,76 @@ namespace SpiderNavigation.Tests
         public void TestExampleFromRequirements()
         {
             // Arrange
-            var spider = new Spider(4, 10, "Left", 7, 15);
+            var navigationService = new NavigationService(7, 15);
+            var spider = new Spider { X = 4, Y = 10, Orientation = "Left" };
             var instructions = "FLEEREFLF";
 
             // Act
-            spider.ExecuteInstructions(instructions);
-            var result = spider.GetFinalPosition();
+            var result = navigationService.Navigate(spider, instructions);
 
             // Assert
-            Assert.AreEqual("5 7 Right", result);
+            Assert.AreEqual(5, result.X);
+            Assert.AreEqual(7, result.Y);
+            Assert.AreEqual("Right", result.Orientation);
         }
 
         [TestMethod]
         public void TestTurningLeft()
         {
-            var spider = new Spider(0, 0, "Up", 10, 10);
-            spider.ExecuteInstructions("L");
-            Assert.AreEqual("Left", spider.Orientation);
+            var navigationService = new NavigationService(10, 10);
+            var spider = new Spider { X = 0, Y = 0, Orientation = "Up" };
+            
+            var result = navigationService.Navigate(spider, "L");
+            
+            Assert.AreEqual("Left", result.Orientation);
         }
 
         [TestMethod]
         public void TestTurningRight()
         {
-            var spider = new Spider(0, 0, "Up", 10, 10);
-            spider.ExecuteInstructions("R");
-            Assert.AreEqual("Right", spider.Orientation);
+            var navigationService = new NavigationService(10, 10);
+            var spider = new Spider { X = 0, Y = 0, Orientation = "Up" };
+            
+            var result = navigationService.Navigate(spider, "R");
+            
+            Assert.AreEqual("Right", result.Orientation);
         }
 
         [TestMethod]
         public void TestMovingForward()
         {
-            var spider = new Spider(0, 0, "Up", 10, 10);
-            spider.ExecuteInstructions("F");
-            Assert.AreEqual(0, spider.X);
-            Assert.AreEqual(1, spider.Y);
+            var navigationService = new NavigationService(10, 10);
+            var spider = new Spider { X = 0, Y = 0, Orientation = "Up" };
+            
+            var result = navigationService.Navigate(spider, "F");
+            
+            Assert.AreEqual(0, result.X);
+            Assert.AreEqual(1, result.Y);
         }
 
         [TestMethod]
         public void TestBoundaryLimits()
         {
-            var spider = new Spider(0, 0, "Down", 5, 5);
-            spider.ExecuteInstructions("F");
-            Assert.AreEqual(0, spider.X);
-            Assert.AreEqual(0, spider.Y);
-        }
-    }
-
-    [TestClass]
-    public class InputParserTests
-    {
-        [TestMethod]
-        public void ParseWallSize_ValidInput_ReturnsCorrectValues()
-        {
-            var (width, height) = InputParser.ParseWallSize("7 15");
-            Assert.AreEqual(7, width);
-            Assert.AreEqual(15, height);
+            var navigationService = new NavigationService(5, 5);
+            var spider = new Spider { X = 0, Y = 0, Orientation = "Down" };
+            
+            var result = navigationService.Navigate(spider, "F");
+            
+            Assert.AreEqual(0, result.X);
+            Assert.AreEqual(0, result.Y);
         }
 
         [TestMethod]
-        public void ParseSpiderPosition_ValidInput_ReturnsCorrectValues()
+        public void TestInvalidInstructionsAreIgnored()
         {
-            var (x, y, orientation) = InputParser.ParseSpiderPosition("4 10 Left");
-            Assert.AreEqual(4, x);
-            Assert.AreEqual(10, y);
-            Assert.AreEqual("Left", orientation);
-        }
-
-        [TestMethod]
-        public void ParseInstructions_ValidInput_ReturnsCorrectValue()
-        {
-            var instructions = InputParser.ParseInstructions("FLEEREFLF");
-            Assert.AreEqual("FLEEREFLF", instructions);
+            var navigationService = new NavigationService(10, 10);
+            var spider = new Spider { X = 0, Y = 0, Orientation = "Up" };
+            
+            var result = navigationService.Navigate(spider, "FXLYRZF");
+            
+            Assert.AreEqual(1, result.X);
+            Assert.AreEqual(1, result.Y);
+            Assert.AreEqual("Right", result.Orientation);
         }
     }
 }
