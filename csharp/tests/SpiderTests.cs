@@ -11,9 +11,9 @@ namespace SpiderNavigation.Tests
         public void TestExampleFromRequirements()
         {
             // Arrange
-            var navigationService = new NavigationService(7, 15);
-            var spider = new Spider { X = 4, Y = 10, Orientation = "Left" };
-            var instructions = "FLEEREFLF";
+            var navigationService = new NavigationService();
+            var spider = new Spider(4, 10, "Left", 7, 15);
+            var instructions = "FLFLFRFFLF"; // CORRECT instructions from spec
 
             // Act
             var result = navigationService.Navigate(spider, instructions);
@@ -27,57 +27,43 @@ namespace SpiderNavigation.Tests
         [TestMethod]
         public void TestTurningLeft()
         {
-            var navigationService = new NavigationService(10, 10);
-            var spider = new Spider { X = 0, Y = 0, Orientation = "Up" };
-            
-            var result = navigationService.Navigate(spider, "L");
-            
-            Assert.AreEqual("Left", result.Orientation);
+            var spider = new Spider(0, 0, "Up", 10, 10);
+            spider.TurnLeft();
+            Assert.AreEqual("Left", spider.Orientation);
         }
 
         [TestMethod]
         public void TestTurningRight()
         {
-            var navigationService = new NavigationService(10, 10);
-            var spider = new Spider { X = 0, Y = 0, Orientation = "Up" };
-            
-            var result = navigationService.Navigate(spider, "R");
-            
-            Assert.AreEqual("Right", result.Orientation);
+            var spider = new Spider(0, 0, "Up", 10, 10);
+            spider.TurnRight();
+            Assert.AreEqual("Right", spider.Orientation);
         }
 
         [TestMethod]
         public void TestMovingForward()
         {
-            var navigationService = new NavigationService(10, 10);
-            var spider = new Spider { X = 0, Y = 0, Orientation = "Up" };
-            
-            var result = navigationService.Navigate(spider, "F");
-            
-            Assert.AreEqual(0, result.X);
-            Assert.AreEqual(1, result.Y);
+            var spider = new Spider(0, 0, "Up", 10, 10);
+            spider.MoveForward();
+            Assert.AreEqual(0, spider.X);
+            Assert.AreEqual(1, spider.Y);
         }
 
         [TestMethod]
         public void TestBoundaryLimits()
         {
-            var navigationService = new NavigationService(5, 5);
-            var spider = new Spider { X = 0, Y = 0, Orientation = "Down" };
-            
-            var result = navigationService.Navigate(spider, "F");
-            
-            Assert.AreEqual(0, result.X);
-            Assert.AreEqual(0, result.Y);
+            var spider = new Spider(0, 0, "Down", 5, 5);
+            spider.MoveForward();
+            Assert.AreEqual(0, spider.X);
+            Assert.AreEqual(0, spider.Y);
         }
 
         [TestMethod]
         public void TestInvalidInstructionsAreIgnored()
         {
-            var navigationService = new NavigationService(10, 10);
-            var spider = new Spider { X = 0, Y = 0, Orientation = "Up" };
-            
-            var result = navigationService.Navigate(spider, "FXLYRZF");
-            
+            var navigationService = new NavigationService();
+            var spider = new Spider(0, 0, "Up", 10, 10);
+            var result = navigationService.Navigate(spider, "FXLYRZF"); // X, Y, Z should be ignored
             Assert.AreEqual(1, result.X);
             Assert.AreEqual(1, result.Y);
             Assert.AreEqual("Right", result.Orientation);
