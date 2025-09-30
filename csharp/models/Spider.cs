@@ -1,13 +1,16 @@
+using System;
+using System.Collections.Generic;
+
 namespace SpiderNavigation.Models
 {
     public class Spider
     {
-        public int X { get; private set; }
-        public int Y { get; private set; }
-        public string Orientation { get; private set; }
-        public int GridWidth { get; private set; }
-        public int GridHeight { get; private set; }
-        public List<Position> Path { get; private set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public string Orientation { get; set; }
+        public int GridWidth { get; set; }
+        public int GridHeight { get; set; }
+        public List<Position> Path { get; set; }
 
         public Spider(int x, int y, string orientation, int gridWidth, int gridHeight)
         {
@@ -16,7 +19,7 @@ namespace SpiderNavigation.Models
             Orientation = orientation;
             GridWidth = gridWidth;
             GridHeight = gridHeight;
-            Path = new List<Position> { new Position(x, y, orientation) };
+            Path = new List<Position> { new Position { X = x, Y = y, Orientation = orientation } };
         }
 
         public void TurnLeft()
@@ -27,9 +30,9 @@ namespace SpiderNavigation.Models
                 "Left" => "Down",
                 "Down" => "Right",
                 "Right" => "Up",
-                _ => throw new ArgumentException($"Invalid orientation: {Orientation}")
+                _ => Orientation
             };
-            Path.Add(new Position(X, Y, Orientation));
+            Path.Add(new Position { X = X, Y = Y, Orientation = Orientation });
         }
 
         public void TurnRight()
@@ -40,37 +43,34 @@ namespace SpiderNavigation.Models
                 "Right" => "Down",
                 "Down" => "Left",
                 "Left" => "Up",
-                _ => throw new ArgumentException($"Invalid orientation: {Orientation}")
+                _ => Orientation
             };
-            Path.Add(new Position(X, Y, Orientation));
+            Path.Add(new Position { X = X, Y = Y, Orientation = Orientation });
         }
 
         public void MoveForward()
         {
             switch (Orientation)
             {
-                case "Up" when Y < GridHeight:
-                    Y++;
+                case "Up":
+                    if (Y < GridHeight) Y += 1;
                     break;
-                case "Right" when X < GridWidth:
-                    X++;
+                case "Right":
+                    if (X < GridWidth) X += 1;
                     break;
-                case "Down" when Y > 0:
-                    Y--;
+                case "Down":
+                    if (Y > 0) Y -= 1;
                     break;
-                case "Left" when X > 0:
-                    X--;
+                case "Left":
+                    if (X > 0) X -= 1;
                     break;
             }
-            Path.Add(new Position(X, Y, Orientation));
+            Path.Add(new Position { X = X, Y = Y, Orientation = Orientation });
         }
 
         public void ExecuteInstructions(string instructions)
         {
-            if (string.IsNullOrEmpty(instructions))
-                throw new ArgumentException("Instructions cannot be null or empty");
-
-            foreach (char instruction in instructions)
+            foreach (var instruction in instructions)
             {
                 switch (instruction)
                 {
@@ -84,13 +84,22 @@ namespace SpiderNavigation.Models
                         MoveForward();
                         break;
                     default:
-                        throw new ArgumentException($"Unknown instruction: {instruction}");
+                        Console.WriteLine($"Unknown instruction: {instruction}");
+                        break;
                 }
             }
         }
 
-        public string GetFinalPosition() => $"{X} {Y} {Orientation}";
+        public string GetFinalPosition()
+        {
+            return $"{X} {Y} {Orientation}";
+        }
     }
 
-    public record Position(int X, int Y, string Orientation);
+    public class Position
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+        public string Orientation { get; set; } = "";
+    }
 }
