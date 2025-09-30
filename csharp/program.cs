@@ -1,44 +1,55 @@
 using SpiderNavigation.Models;
-using SpiderNavigation.Services;
 using SpiderNavigation.Utils;
+using System;
 
-class Program
+namespace SpiderNavigation
 {
-    static void Main()
+    class Program
     {
-        Console.WriteLine("🕷️  SPIDER NAVIGATION SYSTEM\n");
-        
-        // Test input from the requirement
-        string wallInput = "7 15";
-        string spiderInput = "4 10 Left"; 
-        string instructionsInput = "FLFLFRFFLF";
-        
-        Console.WriteLine("Input:");
-        Console.WriteLine($"Wall: {wallInput}");
-        Console.WriteLine($"Spider: {spiderInput}");
-        Console.WriteLine($"Instructions: {instructionsInput}\n");
-        
-        try
+        static void Main(string[] args)
         {
-            var wallSize = InputParser.ParseWallSize(wallInput);
-            var spiderPosition = InputParser.ParseSpiderPosition(spiderInput);
-            var instructions = InputParser.ParseInstructions(instructionsInput);
-            
-            var spider = NavigationService.Navigate(wallSize, spiderPosition, instructions);
-            
-            Console.WriteLine("📊 FINAL RESULT:");
-            Console.WriteLine($"Expected: 5 7 Right");
-            Console.WriteLine($"Actual: {spider.GetFinalPosition()}");
-            
-            Visualizer.DisplayPath(spider.Path, wallSize.Width, wallSize.Height);
-            
+            Console.WriteLine("=== Spider Navigation System ===");
+            Console.WriteLine();
+
+            try
+            {
+                // Get wall dimensions
+                Console.Write("Enter wall dimensions (format: 'width height' e.g., '7 15'): ");
+                var dimensionsInput = Console.ReadLine();
+                var (width, height) = InputParser.ParseWallSize(dimensionsInput);
+
+                // Get spider initial position
+                Console.Write("Enter spider initial position (format: 'x y orientation' e.g., '4 10 Left'): ");
+                var positionInput = Console.ReadLine();
+                var (startX, startY, orientation) = InputParser.ParseSpiderPosition(positionInput);
+
+                // Get instructions
+                Console.Write("Enter movement instructions (e.g., 'FLEEREFLF'): ");
+                var instructionsInput = Console.ReadLine();
+                var instructions = InputParser.ParseInstructions(instructionsInput);
+
+                // Create spider with all parameters (matching Node.js structure)
+                var spider = new Spider(startX, startY, orientation, width, height);
+
+                // Execute instructions using spider's own method
+                spider.ExecuteInstructions(instructions);
+
+                // Get final position
+                var finalPosition = spider.GetFinalPosition();
+
+                // Display result
+                Console.WriteLine();
+                Console.WriteLine("=== Final Position ===");
+                Console.WriteLine(finalPosition);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"❌ Error: {ex.Message}");
-        }
-        
-        Console.WriteLine("\nPress any key to exit...");
-        Console.ReadKey();
     }
 }
