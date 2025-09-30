@@ -44,8 +44,10 @@ spider-navigation/
 │   │   ├── services/
 │   │   │   └── NavigationService.js
 │   │   ├── utils/
-│   │   │   └── InputParser.js
-│   │   └── index.js
+│   │   │   ├── InputParser.js
+│   │   │   ├── Validation.js
+│   │   │   └── Visualiser.js          ← 3 FILES IN UTILS
+│   │   └── index.js                   ← ONLY NEW ADDITION
 │   ├── tests/
 │   │   └── spider.test.js
 │   ├── package.json
