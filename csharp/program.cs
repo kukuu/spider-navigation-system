@@ -1,4 +1,5 @@
 using SpiderNavigation.Models;
+using SpiderNavigation.Services;
 using SpiderNavigation.Utils;
 using System;
 
@@ -16,7 +17,7 @@ namespace SpiderNavigation
                 // Get wall dimensions
                 Console.Write("Enter wall dimensions (format: 'width height' e.g., '7 15'): ");
                 var dimensionsInput = Console.ReadLine();
-                var (width, height) = InputParser.ParseWallSize(dimensionsInput);
+                var (maxX, maxY) = InputParser.ParseWallSize(dimensionsInput);
 
                 // Get spider initial position
                 Console.Write("Enter spider initial position (format: 'x y orientation' e.g., '4 10 Left'): ");
@@ -28,19 +29,15 @@ namespace SpiderNavigation
                 var instructionsInput = Console.ReadLine();
                 var instructions = InputParser.ParseInstructions(instructionsInput);
 
-                // Create spider with all parameters (matching Node.js structure)
-                var spider = new Spider(startX, startY, orientation, width, height);
-
-                // Execute instructions using spider's own method
-                spider.ExecuteInstructions(instructions);
-
-                // Get final position
-                var finalPosition = spider.GetFinalPosition();
+                // Create spider and navigate using NavigationService (like Node.js)
+                var spider = new Spider { X = startX, Y = startY, Orientation = orientation };
+                var navigationService = new NavigationService(maxX, maxY);
+                var finalPosition = navigationService.Navigate(spider, instructions);
 
                 // Display result
                 Console.WriteLine();
                 Console.WriteLine("=== Final Position ===");
-                Console.WriteLine(finalPosition);
+                Console.WriteLine(finalPosition.ToString());
             }
             catch (Exception ex)
             {
