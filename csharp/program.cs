@@ -25,19 +25,19 @@ namespace SpiderNavigation
                 var (startX, startY, orientation) = InputParser.ParseSpiderPosition(positionInput);
 
                 // Get instructions
-                Console.Write("Enter movement instructions (e.g., 'FLEEREFLF'): ");
+                Console.Write("Enter movement instructions (e.g., 'FLFLFRFFLF'): ");
                 var instructionsInput = Console.ReadLine();
                 var instructions = InputParser.ParseInstructions(instructionsInput);
 
-                // Create spider and navigate using NavigationService (like Node.js)
-                var spider = new Spider { X = startX, Y = startY, Orientation = orientation };
-                var navigationService = new NavigationService(maxX, maxY);
+                // Create spider and navigate
+                var spider = new Spider(startX, startY, orientation, maxX, maxY);
+                var navigationService = new NavigationService();
                 var finalPosition = navigationService.Navigate(spider, instructions);
 
                 // Display result
                 Console.WriteLine();
                 Console.WriteLine("=== Final Position ===");
-                Console.WriteLine(finalPosition.ToString());
+                Console.WriteLine(finalPosition.GetFinalPosition());
             }
             catch (Exception ex)
             {
